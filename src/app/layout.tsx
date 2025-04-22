@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import MusicPlayer from "@/components/musicPlayer/MusicPlayer";
+import ASideBar from "@/components/AsideBar/ASideBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} `}>
+        <main className="flex min-h-screen">
+             <ASideBar/>
+          <section className="bg-[#0f0f0f] w-full overflow-auto">{children}
+          </section>
+          
+          <MusicPlayer />
+        </main>
+      </body>
     </html>
   );
 }
