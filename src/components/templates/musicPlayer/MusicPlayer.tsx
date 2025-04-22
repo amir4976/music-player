@@ -9,6 +9,7 @@ import {
   Shuffle,
   VolumeHigh,
 } from "iconsax-reactjs";
+import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 
 type Props = {};
@@ -20,7 +21,16 @@ function MusicPlayer({}: Props) {
   const [currentTime, setCurrentTime] = useState<number>(0); // تایم فعلی پخش
   const [currentPercentage ,setCurrentPercentage ] = useState<number>(0);
   
- 
+//  const exampleJSON = [
+//   title:"",
+//   artist:"",
+//   link:"",
+//   image:"",
+//   album:"",
+//   duration:"",
+//  ]
+
+
   useEffect(() => {
     const audio = musicRef.current;
     if (!audio) return;
@@ -107,7 +117,9 @@ function MusicPlayer({}: Props) {
       <div className="fixed bottom-0 w-full h-24 bg-[#202020] text-white flex items-center justify-between px-10 max-md:px-4">
         {/* اطلاعات آهنگ */}
         <div className="flex items-center gap-4 max-md:w-full max-lg:px-0">
-          <div className="w-14 h-14 rounded-full bg-white"></div>
+          <div className={`w-14 h-14 rounded-full bg-white overflow-hidden ${isPlaying && "animate-[spin_10s_linear_infinite]"}`}>
+            <Image src="/aboutmeImage.JPG" alt="musiccover" width={50} height={50} className="w-full h-full " />
+          </div>
           <div className="flex flex-col">
             <p className="text-xl font-semibold">Song Name...</p>
             <p className="text-sm text-gray-400">Artist Name</p>
