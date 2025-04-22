@@ -19,7 +19,7 @@ function MusicPlayer({}: Props) {
   const [duration, setDuration] = useState<number>(0); // مدت کل آهنگ
   const [currentTime, setCurrentTime] = useState<number>(0); // تایم فعلی پخش
   const [currentPercentage ,setCurrentPercentage ] = useState<number>(0);
- 
+  
  
   useEffect(() => {
     const audio = musicRef.current;
@@ -175,7 +175,7 @@ function MusicPlayer({}: Props) {
 
       {/* پلیر مخفی */}
       <audio
-        src="/test.mp3"
+        src="https://dl.rozmusic.com/Music/1403/12/06/Aron%20Afshar%20-%20Jaan%20Jaan%20%28128%29.mp3"
         ref={musicRef}
         preload="metadata"
         className="hidden"

@@ -9,21 +9,22 @@ function ASideBar({}: Props) {
 
   return (
     <>
-     <button className="absolute left-5 z-10  text-white top-5 text-3xl " onClick={()=>setIsShow((prev)=>prev ? false :true)}>...</button>
-      <aside className={`w-full hidden  md:w-72  lg:flex   bg-[#171717]`} >
-        <div className=" w-72  left-0 top-0">
-          <div className="  h-screen bg-[#171717] text-white">
-            <div className="flex gap-2 w-full justify-center  items-center text-white my-5 mt-10">
-              <div className="logo w-14 h-14">
+     <button className="absolute left-5 z-10  text-white top-2 text-3xl " onClick={()=>setIsShow((prev)=>prev ? false :true)}>...</button>
+
+        <aside className={`w-72 h-[90vh]  hidden  md:w-72  lg:flex    bg-[#171717]`} >
+        <div className=" w-72   left-0 top-0">
+          <div className=" h-full   bg-[#171717] text-white">
+            <div className="flex gap-2 w-full justify-center  items-center text-white my-5 mt-14">
+              <div className="logo w-10 h-10">
                 <Image
                   src="/logo.svg"
                   alt="logo"
                   className=" w-full h-full"
-                  width={100}
-                  height={100}
+                  width={50}
+                  height={50}
                 />
               </div>
-              <div className=" text-3xl font-bold uppercase">potify</div>
+              <div className=" text-xl font-bold uppercase">potify</div>
             </div>
 
             <div className="w-full mt-20  ">
