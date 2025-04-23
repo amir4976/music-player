@@ -36,12 +36,12 @@ function ASideBar({}: Props) {
             </div>
 
             <div className="w-full mt-20  ">
-              <ul className="flex flex-col gap-2 [&>li]:text-white [&>li]:text-lg [&>li]:font-semibold [&>li]:py-2 [&>li]:px-6   [&>li]:cursor-pointer [&>li]:flex [&>li]:gap-3  [&>li]:hover:bg-gray-800">
-                <li className="bg-gray-700/50">
+              <ul className="flex flex-col gap-2 [&>li]:text-white [&>li]:text-lg [&>li]:font-semibold [&>li]:py-2 [&>li]:px-6   [&>li]:cursor-pointer [&>li]:flex [&>li]:gap-3  ">
+                <li className="hover:bg-black/50">
                   <Home variant="Bold" />
                   Home
                 </li>
-                <li>
+                <li className="hover:bg-black/50">
                   <Map1 variant="Bold"/>
                   Browse</li>
               </ul>
