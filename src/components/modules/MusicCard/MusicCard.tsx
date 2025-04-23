@@ -27,8 +27,8 @@ function MusicCard({ title, artist,audio, cover }: Props) {
           <Image
             src={cover}
             alt={title}
-            width={100}
-            height={100}
+            width={200}
+            height={200}
             className="w-full h-full rounded-full"
           />
         </div>

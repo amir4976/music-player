@@ -1,7 +1,7 @@
 'use client'
 import MusicCard from "@/components/modules/MusicCard/MusicCard";
 import React, { useEffect, useState } from "react";
- function page() {
+ function Page() {
     const [AllMusics,setAllMusics] = useState([]);
   
     useEffect(()=>{
@@ -30,4 +30,4 @@ import React, { useEffect, useState } from "react";
   );
 }
 
-export default page;
+export default Page;

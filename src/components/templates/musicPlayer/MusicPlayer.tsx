@@ -13,7 +13,6 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSelector } from "react-redux";
-import { current } from "@reduxjs/toolkit";
 type Props = {};
 
 function MusicPlayer({}: Props) {
@@ -24,11 +23,12 @@ function MusicPlayer({}: Props) {
   const [isExpanded, setIsExopanded] = useState<Boolean>(false);
   const [showVolumeBar, setShowVolumeBar] = useState(false);
   const [volume, setVolume] = useState(0.5);
-  
+
   const currentMusic = useSelector((state: any) => state.music.currentMusic);
-  console.log(currentMusic);
-
-
+  // play music when user clicked on one of musics
+  useEffect(() => {
+    play();
+  }, [currentMusic.audio]);
 
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVolume = parseFloat(e.target.value);
@@ -87,7 +87,7 @@ function MusicPlayer({}: Props) {
   };
   const percentage = getCurrentTimePercentage();
 
-  // پخش آهنگ
+  //  play music
   const play = () => {
     const audio = musicRef.current;
     if (!audio) return;
@@ -100,7 +100,7 @@ function MusicPlayer({}: Props) {
     }
   };
 
-  // توقف پخش
+  // pause music
   const pause = () => {
     musicRef.current?.pause();
     setIsPlaying(false);
@@ -113,6 +113,7 @@ function MusicPlayer({}: Props) {
     musicRef.current!.currentTime = (XPrecntage / 100) * duration;
     console.log(`Clicked at x: ${XPrecntage}`);
   };
+
   return (
     <>
       <motion.div
@@ -126,7 +127,6 @@ function MusicPlayer({}: Props) {
       >
         {/* اطلاعات آهنگ */}
         <motion.div
-
           className={`flex items-center gap-4 max-md:w-full max-lg:px-0 ${
             isExpanded ? "flex-col items-center justify-evenly gap-24 " : ""
           }`}
@@ -147,8 +147,12 @@ function MusicPlayer({}: Props) {
             />
           </div>
 
-          <div className="flex flex-col">
-            <p className="text-xl font-semibold">{currentMusic.title.slice(0,15)}...</p>
+          <div className="flex flex-col  overflow-hidden ">
+            <p className="text-lg font-semibold ">
+                {
+                  isExpanded ? currentMusic.title : currentMusic.title.slice(0, 10)+"..."
+                }
+            </p>
             <p className="text-sm text-gray-400">{currentMusic.artist}</p>
           </div>
         </motion.div>
