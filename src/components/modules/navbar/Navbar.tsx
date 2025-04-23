@@ -22,7 +22,7 @@ function Navbar({}: Props) {
             <ArrowRight3 />
           </button>
         </div>
-        <div className="searchbax w-[20rem] bg-[#171717] rounded-full relative hidden items-center md:flex ">
+        <div className=" w-[20rem] bg-[#171717] rounded-full relative hidden items-center lg:flex ">
           <div className="absolute left-2  ">
             <SearchNormal1 size={20} />
           </div>

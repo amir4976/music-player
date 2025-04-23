@@ -18,11 +18,26 @@
 
 body {
   color: black;
-  background:rgb(44, 44, 44);
+  background:#171717;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+/* داخل فایل globals.css یا با style jsx */
+.volume-slider::-webkit-slider-thumb {
+  appearance: none;
+  height: 10px;
+  width: 10px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.volume-slider::-webkit-slider-runnable-track {
+  background: #ef4444;
+  height: 10px;
+  
+  border-radius: 10px;
 }

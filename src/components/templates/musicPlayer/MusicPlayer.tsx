@@ -11,7 +11,7 @@ import {
 } from "iconsax-reactjs";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
-
+import { AnimatePresence, motion } from "framer-motion";
 type Props = {};
 
 function MusicPlayer({}: Props) {
@@ -19,17 +19,25 @@ function MusicPlayer({}: Props) {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [duration, setDuration] = useState<number>(0); // مدت کل آهنگ
   const [currentTime, setCurrentTime] = useState<number>(0); // تایم فعلی پخش
-  const [currentPercentage ,setCurrentPercentage ] = useState<number>(0);
-  
-//  const exampleJSON = [
-//   title:"",
-//   artist:"",
-//   link:"",
-//   image:"",
-//   album:"",
-//   duration:"",
-//  ]
+  const [isExpanded, setIsExopanded] = useState<Boolean>(false);
+  const [showVolumeBar, setShowVolumeBar] = useState(false);
+  const [volume, setVolume] = useState(0.1);
 
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newVolume = parseFloat(e.target.value);
+    setVolume(newVolume);
+    if (musicRef.current) {
+      musicRef.current.volume = newVolume;
+    }
+  };
+  //  const exampleJSON = [
+  //   title:"",
+  //   artist:"",
+  //   link:"",
+  //   image:"",
+  //   album:"",
+  //   duration:"",
+  //  ]
 
   useEffect(() => {
     const audio = musicRef.current;
@@ -85,14 +93,12 @@ function MusicPlayer({}: Props) {
     const audio = musicRef.current;
     if (!audio) return;
     audio.play();
-    audio.volume = 0.1;
     setIsPlaying(true);
 
     // اگه هنوز duration ثبت نشده، الان چکش کن
     if (!isNaN(audio.duration)) {
       setDuration(audio.duration);
     }
-  
   };
 
   // توقف پخش
@@ -101,25 +107,46 @@ function MusicPlayer({}: Props) {
     setIsPlaying(false);
   };
 
-
-
   const goToDuration = (event: React.MouseEvent<HTMLDivElement>) => {
-   
-      const rect = event.currentTarget.getBoundingClientRect();
-      const x = event.clientX - rect.left;
-      const XPrecntage = (x / rect.width) * 100;
-      musicRef.current!.currentTime = (XPrecntage / 100) * duration;
-      console.log(`Clicked at x: ${XPrecntage}`);
-  
-  }
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const XPrecntage = (x / rect.width) * 100;
+    musicRef.current!.currentTime = (XPrecntage / 100) * duration;
+    console.log(`Clicked at x: ${XPrecntage}`);
+  };
   return (
     <>
-      <div className="fixed bottom-0 w-full h-24 bg-[#202020] text-white flex items-center justify-between px-10 max-md:px-4">
+      <motion.div
+        onClick={() => setIsExopanded(!isExpanded)}
+        initial={{ height: "6rem" }}
+        animate={{ height: isExpanded ? "100vh" : "6rem" }}
+        transition={{ type: "spring", stiffness: 100, damping: 20 }}
+        className={`fixed   bottom-0 w-full border-t border-gray-500   backdrop-blur-md text-white flex items-center justify-between px-10 max-md:px-4 ${
+          isExpanded ? "flex-col items-center justify-evenly " : ""
+        } `}
+      >
         {/* اطلاعات آهنگ */}
-        <div className="flex items-center gap-4 max-md:w-full max-lg:px-0">
-          <div className={`w-14 h-14 rounded-full bg-white overflow-hidden ${isPlaying && "animate-[spin_10s_linear_infinite]"}`}>
-            <Image src="/aboutmeImage.JPG" alt="musiccover" width={50} height={50} className="w-full h-full " />
+        <div
+          className={`flex items-center gap-4 max-md:w-full max-lg:px-0 ${
+            isExpanded ? "flex-col items-center justify-evenly gap-24 " : ""
+          }`}
+        >
+          <div
+            className={`w-14 h-14 rounded-full bg-white overflow-hidden ${
+              isExpanded ? "w-60 h-60" : ""
+            } `}
+          >
+            <Image
+              src="/aboutmeImage.JPG"
+              alt="musiccover"
+              width={200}
+              height={200}
+              className={`w-full h-full ${
+                isPlaying ? "animate-[spin_20s_linear_infinite]" : ""
+              }`}
+            />
           </div>
+
           <div className="flex flex-col">
             <p className="text-xl font-semibold">Song Name...</p>
             <p className="text-sm text-gray-400">Artist Name</p>
@@ -127,7 +154,10 @@ function MusicPlayer({}: Props) {
         </div>
 
         {/* دکمه‌های کنترلی */}
-        <div className="flex items-center gap-2">
+        <div
+          className="flex items-center gap-2"
+          onClick={(e) => e.stopPropagation()}
+        >
           <ArrowLeft3 size="32" color="#fff" />
           {!isPlaying ? (
             <div
@@ -148,46 +178,77 @@ function MusicPlayer({}: Props) {
         </div>
 
         {/* نوار پیشرفت + زمان‌ها */}
-        <div className="flex items-center gap-4 w-[40rem] max-lg:hidden">
+        <div
+          className={`flex items-center gap-4 w-[40rem] ${isExpanded ? " flex  max-md:w-full"  : "max-md:hidden "}`}
+          onClick={(e) => e.stopPropagation()}
+        >
           <span className="text-sm">{formatTime(currentTime)}</span>
 
-        <div className="relative w-full">
-        <div className={`circle w-3 h-3  bg-white border border-gray-300 rounded-full absolute -top-1`} style={{left:`${percentage-0.5}%`}}></div>
-          <div className="w-full h-1 bg-white cursor-pointer  rounded-full overflow-hidden" onClick={goToDuration}>
+          <div className="relative w-full">
             <div
-              className="h-full bg-red-500"
-              style={{ width: `${(currentTime / duration) * 100 || 0}%` }}
+              className={`circle w-3 h-3  bg-white border border-gray-300 rounded-full absolute -top-1`}
+              style={{ left: `${percentage - 0.5}%` }}
             ></div>
+            <div
+              className="w-full h-1 bg-white cursor-pointer  rounded-full overflow-hidden"
+              onClick={goToDuration}
+            >
+              <div
+                className="h-full bg-red-500"
+                style={{ width: `${(currentTime / duration) * 100 || 0}%` }}
+              ></div>
+            </div>
           </div>
-        </div>
 
           <span className="text-sm">{formatTime(duration)}</span>
         </div>
 
         {/* کنترل‌های اضافه */}
-        <div className="flex items-center gap-4 max-md:hidden">
+        <div className={`flex items-center gap-4  ${isExpanded ? "items-center justify-evenly gap-24 " : "max-md:hidden"}`}>
           <button className="p-2 bg-gray-800/50 rounded-full">
             <Repeat size="20" color="#FF8A65" variant="Bold" />
           </button>
           <button className="p-2 bg-gray-800/50 rounded-full">
             <Shuffle size="20" color="#fff" variant="Bold" />
           </button>
+          <div
+            className="relative"
+            onMouseEnter={() => setShowVolumeBar(true)}
+            onMouseLeave={() => setShowVolumeBar(false)}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <AnimatePresence>
+              {showVolumeBar && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute bottom-12 left-0 -translate-x-1/2 w-8 h-24 bg-gray-700 rounded-full flex items-center justify-center "
+                >
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value={volume}
+                    onChange={handleVolumeChange}
+                    className="volume-slider w-16 h-full rotate-[-90deg] bg-transparent appearance-none cursor-pointer"
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
 
-          <div className="relative">
-            <div className="w-full h-24 absolute flex justify-center py-5 -top-full -translate-y-1/2 left-0 bg-gray-800/50 rounded-full overflow-hidden">
-            <div className="w-1 h-full bg-white"></div>
-            
-            </div>
-            <button className="p-2 bg-gray-800/50 rounded-full" >
+            <button className="p-2 bg-gray-800/50 rounded-full">
               <VolumeHigh size="20" color="#fff" variant="Bold" />
             </button>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* پلیر مخفی */}
       <audio
-        src="https://dl.rozmusic.com/Music/1403/12/06/Aron%20Afshar%20-%20Jaan%20Jaan%20%28128%29.mp3"
+        src="https://irsv.upmusics.com/dlw/Mast%20Shodam%20Ashegh%20Shodam%20(320).mp3"
         ref={musicRef}
         preload="metadata"
         className="hidden"
