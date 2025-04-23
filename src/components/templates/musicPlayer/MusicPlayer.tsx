@@ -23,11 +23,14 @@ function MusicPlayer({}: Props) {
   const [isExpanded, setIsExopanded] = useState<Boolean>(false);
   const [showVolumeBar, setShowVolumeBar] = useState(false);
   const [volume, setVolume] = useState(0.5);
-
+  const [musicPlaingFlag ,setMusicPlaingFlag] = useState(false)
   const currentMusic = useSelector((state: any) => state.music.currentMusic);
   // play music when user clicked on one of musics
   useEffect(() => {
-    play();
+    if(currentMusic.audio ){
+      play()
+      setMusicPlaingFlag(true)
+    }
   }, [currentMusic.audio]);
 
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -123,7 +126,7 @@ function MusicPlayer({}: Props) {
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
         className={`fixed  z-40 bottom-0 w-full border-t border-gray-500   backdrop-blur-md text-white flex items-center justify-between px-10 max-md:px-4 ${
           isExpanded ? "flex-col items-center justify-evenly " : ""
-        } `}
+        }  ${musicPlaingFlag ? "flex intero" : "hidden"}`}
       >
         {/* اطلاعات آهنگ */}
         <motion.div
