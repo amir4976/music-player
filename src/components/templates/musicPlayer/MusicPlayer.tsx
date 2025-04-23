@@ -30,14 +30,6 @@ function MusicPlayer({}: Props) {
       musicRef.current.volume = newVolume;
     }
   };
-  //  const exampleJSON = [
-  //   title:"",
-  //   artist:"",
-  //   link:"",
-  //   image:"",
-  //   album:"",
-  //   duration:"",
-  //  ]
 
   useEffect(() => {
     const audio = musicRef.current;
@@ -121,12 +113,13 @@ function MusicPlayer({}: Props) {
         initial={{ height: "6rem" }}
         animate={{ height: isExpanded ? "100vh" : "6rem" }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className={`fixed   bottom-0 w-full border-t border-gray-500   backdrop-blur-md text-white flex items-center justify-between px-10 max-md:px-4 ${
+        className={`fixed  z-50 bottom-0 w-full border-t border-gray-500   backdrop-blur-md text-white flex items-center justify-between px-10 max-md:px-4 ${
           isExpanded ? "flex-col items-center justify-evenly " : ""
         } `}
       >
         {/* اطلاعات آهنگ */}
-        <div
+        <motion.div
+
           className={`flex items-center gap-4 max-md:w-full max-lg:px-0 ${
             isExpanded ? "flex-col items-center justify-evenly gap-24 " : ""
           }`}
@@ -151,7 +144,7 @@ function MusicPlayer({}: Props) {
             <p className="text-xl font-semibold">Song Name...</p>
             <p className="text-sm text-gray-400">Artist Name</p>
           </div>
-        </div>
+        </motion.div>
 
         {/* دکمه‌های کنترلی */}
         <div
@@ -179,7 +172,9 @@ function MusicPlayer({}: Props) {
 
         {/* نوار پیشرفت + زمان‌ها */}
         <div
-          className={`flex items-center gap-4 w-[40rem] ${isExpanded ? " flex  max-md:w-full"  : "max-md:hidden "}`}
+          className={`flex items-center gap-4 w-[40rem] ${
+            isExpanded ? " flex  max-md:w-full" : "max-md:hidden "
+          }`}
           onClick={(e) => e.stopPropagation()}
         >
           <span className="text-sm">{formatTime(currentTime)}</span>
@@ -204,7 +199,11 @@ function MusicPlayer({}: Props) {
         </div>
 
         {/* کنترل‌های اضافه */}
-        <div className={`flex items-center gap-4  ${isExpanded ? "items-center justify-evenly gap-24 " : "max-md:hidden"}`}>
+        <div
+          className={`flex items-center gap-4  ${
+            isExpanded ? "items-center justify-evenly gap-24 " : "max-md:hidden"
+          }`}
+        >
           <button className="p-2 bg-gray-800/50 rounded-full">
             <Repeat size="20" color="#FF8A65" variant="Bold" />
           </button>

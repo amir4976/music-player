@@ -1,3 +1,4 @@
+'use client'
 import {
   ArrowLeft3,
   ArrowRight3,
@@ -5,13 +6,16 @@ import {
   SearchNormal1,
   Setting2,
 } from "iconsax-reactjs";
-import Image from "next/image";
 import React from "react";
+import LoginModal from "./LoginModal";
 
 type Props = {};
 
 function Navbar({}: Props) {
+  const [isOpen, setIsOpen] = React.useState(false);
   return (
+    <>
+
     <div className="w-full h-fit flex justify-between items-center mt-14 text-white px-10 ">
       <div className="flex gap-5">
         <div className="btns flex gap-3">
@@ -48,18 +52,17 @@ function Navbar({}: Props) {
             </div>
           </div>
 
-          <div className="">
-            <Image
-              src="/aboutmeImage.JPG"
-              alt="avatar"
-              className="w-10 h-10 rounded-full"
-              width={50}
-              height={50}
-            />
+          <div className="p-2 bg-[#171717] rounded-full" onClick={()=>setIsOpen(true)}>
+              <button>login</button>
           </div>
         </div>
       </div>
     </div>
+
+    {
+      isOpen && <LoginModal setIsOpen={setIsOpen}/>
+    }
+    </>
   );
 }
 

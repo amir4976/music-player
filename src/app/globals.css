@@ -17,7 +17,7 @@
 }
 
 body {
-  color: black;
+  color: white;
   background:#171717;
 }
 
@@ -40,4 +40,22 @@ body {
   height: 10px;
   
   border-radius: 10px;
+}
+
+.ScrollerEffects::-webkit-scrollbar {
+  width: 8px; /* برای اسکرول عمودی */
+  height: 8px; /* برای اسکرول افقی */
+}
+
+.ScrollerEffects::-webkit-scrollbar-thumb {
+  background-color: rgb(129, 129, 129);
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.ScrollerEffects::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 2px;
+
 }

@@ -1,4 +1,5 @@
 "use client";
+import { ElementPlus, Heart, Home, House, House2, Map, Map1 } from "iconsax-reactjs";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -9,9 +10,16 @@ function ASideBar({}: Props) {
 
   return (
     <>
-     <button className="absolute left-5 z-10  text-white top-2 text-3xl " onClick={()=>setIsShow((prev)=>prev ? false :true)}>...</button>
+      <button
+        className="absolute left-5 z-10  text-white top-2 text-3xl "
+        onClick={() => setIsShow((prev) => (prev ? false : true))}
+      >
+        ...
+      </button>
 
-        <aside className={`w-72 h-[90vh]  hidden  md:w-72  lg:flex    bg-[#171717]`} >
+      <aside
+        className={`w-72 h-[90vh]  hidden  md:w-72  lg:flex    bg-[#171717]`}
+      >
         <div className=" w-72   left-0 top-0">
           <div className=" h-full   bg-[#171717] text-white">
             <div className="flex gap-2 w-full justify-center  items-center text-white my-5 mt-14">
@@ -28,31 +36,41 @@ function ASideBar({}: Props) {
             </div>
 
             <div className="w-full mt-20  ">
-              <ul className="flex flex-col gap-2 [&>li]:text-white [&>li]:text-lg [&>li]:font-semibold [&>li]:py-2 [&>li]:px-6   [&>li]:cursor-pointer [&>li]:hover:bg-gray-800">
-                <li className="bg-gray-700/50">Home</li>
-                <li>Browse</li>
+              <ul className="flex flex-col gap-2 [&>li]:text-white [&>li]:text-lg [&>li]:font-semibold [&>li]:py-2 [&>li]:px-6   [&>li]:cursor-pointer [&>li]:flex [&>li]:gap-3  [&>li]:hover:bg-gray-800">
+                <li className="bg-gray-700/50">
+                  <Home variant="Bold" />
+                  Home
+                </li>
+                <li>
+                  <Map1 variant="Bold"/>
+                  Browse</li>
               </ul>
               <div className="px-6">
                 <div className="border-b text-white text-xs font-semibold py-2 my-5">
                   Library
                 </div>
               </div>
-              <ul className="flex flex-col gap-2 [&>li]:text-white [&>li]:text-lg [&>li]:font-semibold [&>li]:py-2 [&>li]:px-6   [&>li]:cursor-pointer [&>li]:hover:bg-gray-800">
-                <li>Home</li>
-                <li>Browse</li>
-                <li>Browse</li>
-                <li>Browse</li>
+              <ul className="flex flex-col gap-2 [&>li]:text-white [&>li]:text-lg [&>li]:font-semibold [&>li]:py-3 [&>li]:px-6   [&>li]:cursor-pointer [&>li]:flex [&>li]:gap-3 ">
+                <li className="hover:bg-black/50">
+                  <Heart />
+                  favorite
+                </li>
+                <li className="hover:bg-black/50">
+                  <ElementPlus />
+                  add collection...
+                </li>
               </ul>
             </div>
           </div>
         </div>
       </aside>
 
-
-
-
-    {/* mobile menu */}
-      <aside className={`w-72   bg-[#171717]  absolute left-0 top-0 h-screen z-5 ${isShow ? "flex":"hidden"}`} >
+      {/* mobile menu */}
+      <aside
+        className={`w-72   bg-[#171717]  absolute left-0 top-0 h-screen z-5 ${
+          isShow ? "flex" : "hidden"
+        }`}
+      >
         <div className=" w-72  left-0 top-0">
           <div className="  h-screen bg-[#171717] text-white">
             <div className="flex gap-2 w-full justify-center  items-center text-white my-5 mt-10">
@@ -79,10 +97,8 @@ function ASideBar({}: Props) {
                 </div>
               </div>
               <ul className="flex flex-col gap-2 [&>li]:text-white [&>li]:text-lg [&>li]:font-semibold [&>li]:py-2 [&>li]:px-6   [&>li]:cursor-pointer [&>li]:hover:bg-gray-800">
-                <li>Home</li>
-                <li>Browse</li>
-                <li>Browse</li>
-                <li>Browse</li>
+                <li>favorite</li>
+                <li>add more...</li>
               </ul>
             </div>
           </div>
