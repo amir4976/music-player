@@ -21,7 +21,7 @@ function MusicPlayer({}: Props) {
   const [currentTime, setCurrentTime] = useState<number>(0); // تایم فعلی پخش
   const [isExpanded, setIsExopanded] = useState<Boolean>(false);
   const [showVolumeBar, setShowVolumeBar] = useState(false);
-  const [volume, setVolume] = useState(0.1);
+  const [volume, setVolume] = useState(0.5);
 
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVolume = parseFloat(e.target.value);
