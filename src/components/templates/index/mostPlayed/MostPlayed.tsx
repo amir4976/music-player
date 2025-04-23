@@ -5,7 +5,7 @@ import "swiper/css";
 import Image from "next/image";
 type Props = {};
 
-function LastUpload({}: Props) {
+function MostPlayed({}: Props) {
   const music = [
     {
       title: "Blinding Lights",
@@ -44,19 +44,20 @@ function LastUpload({}: Props) {
     },
     {
       title: "Stay",
-      artist: "The Kid LAROI & Justin Bieber",
+      artist: "Justin Bieber",
       cover: "/testCovers/Stay.png",
     },
   ];
   return (
     <>
       <div className="text-2xl text-white ">
-        Last Uploaded <span className="text-gray-500 text-xs">this week</span>
+        most Played <span className="text-gray-500 text-xs">this week</span>
       </div>
-      <div className="w-full h-fit flex  gap-3 bg-[#171717] p-5 rounded-lg">
+      <div className="w-full h-fit flex  gap-3   rounded-lg">
         <Swiper
-          spaceBetween={50}
+          spaceBetween={200}
           slidesPerView={7}
+          loop={true}
           breakpoints={{
             1536: {
               slidesPerView: 7,
@@ -80,7 +81,7 @@ function LastUpload({}: Props) {
         >
           {music.map((item, index) => (
             <SwiperSlide key={index}>
-              <div className="w-40 h-fit flex flex-col items-center gap-2">
+              <div className="w-56 min-h-66 flex flex-col items-center gap-2 bg-[#171717] p-8 rounded-lg">
                 <div className="w-full h-full">
                   <Image
                     src={item.cover}
@@ -101,4 +102,4 @@ function LastUpload({}: Props) {
   );
 }
 
-export default LastUpload;
+export default MostPlayed;

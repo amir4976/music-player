@@ -4,6 +4,7 @@ import "./globals.css";
 import MusicPlayer from "@/components/templates/musicPlayer/MusicPlayer";
 import ASideBar from "@/components/templates/AsideBar/ASideBar";
 import Navbar from "@/components/modules/navbar/Navbar";
+import StoreProvider from "./StoreProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,15 +21,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} `}>
-        <main className="flex min-h-screen">
-             <ASideBar/>
-          <section className="bg-[#0f0f0f] w-full overflow-auto">
-            <Navbar/>
-            {children}
-          </section>
-          
-          <MusicPlayer />
-        </main>
+        <StoreProvider>
+          <main className="flex min-h-screen">
+            <ASideBar />
+            <section className="bg-[#0f0f0f] w-full overflow-auto">
+              <Navbar />
+              {children}
+            </section>
+
+            <MusicPlayer />
+          </main>
+        </StoreProvider>
       </body>
     </html>
   );

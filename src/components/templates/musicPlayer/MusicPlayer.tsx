@@ -12,6 +12,8 @@ import {
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useSelector } from "react-redux";
+import { current } from "@reduxjs/toolkit";
 type Props = {};
 
 function MusicPlayer({}: Props) {
@@ -22,6 +24,11 @@ function MusicPlayer({}: Props) {
   const [isExpanded, setIsExopanded] = useState<Boolean>(false);
   const [showVolumeBar, setShowVolumeBar] = useState(false);
   const [volume, setVolume] = useState(0.5);
+  
+  const currentMusic = useSelector((state: any) => state.music.currentMusic);
+  console.log(currentMusic);
+
+
 
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVolume = parseFloat(e.target.value);
@@ -113,7 +120,7 @@ function MusicPlayer({}: Props) {
         initial={{ height: "6rem" }}
         animate={{ height: isExpanded ? "100vh" : "6rem" }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className={`fixed  z-50 bottom-0 w-full border-t border-gray-500   backdrop-blur-md text-white flex items-center justify-between px-10 max-md:px-4 ${
+        className={`fixed  z-40 bottom-0 w-full border-t border-gray-500   backdrop-blur-md text-white flex items-center justify-between px-10 max-md:px-4 ${
           isExpanded ? "flex-col items-center justify-evenly " : ""
         } `}
       >
@@ -130,7 +137,7 @@ function MusicPlayer({}: Props) {
             } `}
           >
             <Image
-              src="/aboutmeImage.JPG"
+              src={currentMusic?.cover}
               alt="musiccover"
               width={200}
               height={200}
@@ -141,8 +148,8 @@ function MusicPlayer({}: Props) {
           </div>
 
           <div className="flex flex-col">
-            <p className="text-xl font-semibold">Song Name...</p>
-            <p className="text-sm text-gray-400">Artist Name</p>
+            <p className="text-xl font-semibold">{currentMusic.title.slice(0,15)}...</p>
+            <p className="text-sm text-gray-400">{currentMusic.artist}</p>
           </div>
         </motion.div>
 
@@ -247,7 +254,7 @@ function MusicPlayer({}: Props) {
 
       {/* پلیر مخفی */}
       <audio
-        src="https://irsv.upmusics.com/dlw/Mast%20Shodam%20Ashegh%20Shodam%20(320).mp3"
+        src={currentMusic.audio}
         ref={musicRef}
         preload="metadata"
         className="hidden"
