@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react'
 // /app/data.ts
 
 
-function page () {
+function Page () {
   const [GetAllAlbums, setGetAllAlbums] = useState<any>([])
   useEffect(()=>{
     const getData = async () => {
@@ -36,4 +36,4 @@ function page () {
   )
 }
 
-export default page
+export default Page
