@@ -81,7 +81,7 @@ function MostPlayed({}: Props) {
         >
           {music.map((item, index) => (
             <SwiperSlide key={index}>
-              <div className="w-56 min-h-66 flex flex-col items-center gap-2 bg-[#171717] p-8 rounded-lg">
+              <div className="w-56 max-md:w-full  min-h-66 flex flex-col items-center gap-2 bg-[#171717] p-8 rounded-lg">
                 <div className="w-full h-full">
                   <Image
                     src={item.cover}

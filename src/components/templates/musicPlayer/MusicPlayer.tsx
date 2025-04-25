@@ -23,13 +23,13 @@ function MusicPlayer({}: Props) {
   const [isExpanded, setIsExopanded] = useState<Boolean>(false);
   const [showVolumeBar, setShowVolumeBar] = useState(false);
   const [volume, setVolume] = useState(0.5);
-  const [musicPlaingFlag ,setMusicPlaingFlag] = useState(false)
+  const [musicPlaingFlag, setMusicPlaingFlag] = useState(false);
   const currentMusic = useSelector((state: any) => state.music.currentMusic);
   // play music when user clicked on one of musics
   useEffect(() => {
-    if(currentMusic.audio ){
-      play()
-      setMusicPlaingFlag(true)
+    if (currentMusic.audio) {
+      play();
+      setMusicPlaingFlag(true);
     }
   }, [currentMusic.audio]);
 
@@ -123,46 +123,50 @@ function MusicPlayer({}: Props) {
         onClick={() => setIsExopanded(!isExpanded)}
         initial={{ height: "6rem" }}
         animate={{ height: isExpanded ? "100vh" : "6rem" }}
-        transition={{ type: "spring", stiffness: 100, damping: 20 }}
+        transition={{ type: "spring", stiffness: 200, damping: 20 }}
         className={`fixed  z-40 bottom-0 w-full border-t border-gray-500   backdrop-blur-md text-white flex items-center justify-between px-10 max-md:px-4 ${
           isExpanded ? "flex-col items-center justify-evenly " : ""
         }  ${musicPlaingFlag ? "flex intero" : "hidden"}`}
       >
         {/* اطلاعات آهنگ */}
         <motion.div
+          layout
           className={`flex items-center gap-4 max-md:w-full max-lg:px-0 ${
-            isExpanded ? "flex-col items-center justify-evenly gap-24 " : ""
+            isExpanded ? "flex-col items-center justify-evenly gap-24" : ""
           }`}
         >
-          <div
-            className={`w-14 h-14 rounded-full bg-white overflow-hidden ${
-              isExpanded ? "w-60 h-60" : ""
-            } `}
+          <motion.div
+            layout
+            layoutId="music-cover"
+            transition={{ layout: { duration: 0.4, ease: "easeInOut" } }}
+            className={`rounded-full    overflow-hidden bg-white ${
+              isExpanded ? "w-96 h-96 rounded-xl max-md:w-full max-md:h-fit" : "w-14 h-14"
+            }`}
           >
             <Image
               src={currentMusic?.cover}
               alt="musiccover"
-              width={200}
-              height={200}
-              className={`w-full h-full ${
-                isPlaying ? "animate-[spin_20s_linear_infinite]" : ""
-              }`}
+              width={240}
+              height={240}
+              className={`w-full h-full object-cover`}
             />
-          </div>
+          </motion.div>
 
-          <div className="flex flex-col  overflow-hidden ">
-            <p className="text-lg font-semibold ">
-                {
-                  isExpanded ? currentMusic.title : currentMusic.title.slice(0, 10)+"..."
-                }
+          <motion.div layout className="flex flex-col overflow-hidden">
+            <p className="text-lg font-semibold">
+              {isExpanded
+                ? currentMusic.title
+                : currentMusic.title.slice(0, 10) + "..."}
             </p>
             <p className="text-sm text-gray-400">{currentMusic.artist}</p>
-          </div>
+          </motion.div>
         </motion.div>
 
         {/* دکمه‌های کنترلی */}
         <div
-          className="flex items-center gap-2"
+          className={`flex items-center gap-2 ${
+            isExpanded ? "InOutAnimate" : ""
+          }`}
           onClick={(e) => e.stopPropagation()}
         >
           <ArrowLeft3 size="32" color="#fff" />
@@ -187,7 +191,7 @@ function MusicPlayer({}: Props) {
         {/* نوار پیشرفت + زمان‌ها */}
         <div
           className={`flex items-center gap-4 w-[40rem] ${
-            isExpanded ? " flex  max-md:w-full" : "max-md:hidden "
+            isExpanded ? " flex  max-md:w-full  InOutAnimate" : "max-md:hidden "
           }`}
           onClick={(e) => e.stopPropagation()}
         >

@@ -73,3 +73,36 @@ body {
     transform: translateY(0px);
   }
 }
+
+
+.InOutAnimate{
+  animation: InOutAnimate 1s ease-in-out;
+}
+
+
+@keyframes InOutAnimate {
+  0% {
+    opacity:0;
+  }100%{
+    opacity: 1;
+  }
+}
+
+
+
+.ImageMove {
+  animation: ImageMove 0.2s ease-in-out;
+}
+
+@keyframes ImageMove {
+  0% {
+
+    transform: translate(calc(20vw - 10px), 700px);
+
+  
+  }100%{
+
+    transform: translateY(0px);
+      transform: translateX(0px);
+  }
+}
