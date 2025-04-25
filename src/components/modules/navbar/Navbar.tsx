@@ -16,7 +16,7 @@ function Navbar({}: Props) {
   return (
     <>
 
-    <div className="w-full h-fit flex justify-between items-center mt-14 text-white px-10 ">
+    <div className="w-full h-fit flex justify-between items-center py-5   text-white px-20 ">
       <div className="flex gap-5">
         <div className="btns flex gap-3">
           <button className="bg-[#171717] text-white p-2 rounded-full">

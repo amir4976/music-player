@@ -18,7 +18,7 @@ function ASideBar({}: Props) {
       </button>
 
       <aside
-        className={`w-72 h-[90vh]  hidden  md:w-72  lg:flex    bg-[#171717]`}
+        className={`w-72 h-[82vh]  hidden  md:w-72  lg:flex    bg-[#171717] `}
       >
         <div className=" w-72   left-0 top-0">
           <div className=" h-full   bg-[#171717] text-white">

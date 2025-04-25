@@ -22,7 +22,7 @@ function MusicCard({ title, artist,audio, cover }: Props) {
 
   return (
     <>
-      <div className="w-full  h-fit flex flex-col items-center gap-2 bg-[#171717] rounded-xl p-2" onClick={handleClick}>
+      <div className="w-full  h-fit flex flex-col items-center gap-2 hover:bg-[#171717] rounded-xl p-3 transition-all" onClick={handleClick}>
         <div className="w-full h-full">
           <Image
             src={cover}

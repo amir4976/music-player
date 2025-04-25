@@ -3,8 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import MusicPlayer from "@/components/templates/musicPlayer/MusicPlayer";
 import ASideBar from "@/components/templates/AsideBar/ASideBar";
-import Navbar from "@/components/modules/navbar/Navbar";
 import StoreProvider from "./StoreProvider";
+import Navbar from "@/components/modules/navbar/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,18 +20,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} `}>
+      <body className={`${inter.className} ScrollerEffects`}>
         <StoreProvider>
-          <main className="flex min-h-screen">
+          <Navbar/>
+          <main className="flex h-[85vh] ">
+            <div className=" p-3 max-md:p-0 rounded-lg overflow-hidden">
+
             <ASideBar />
-            <section className="bg-[#0f0f0f] w-full overflow-auto">
-              <Navbar />
+            </div>
+            <section className="bg-[#0f0f0f] h-[85vh] ScrollerEffects  w-full overflow-auto p-3">
               {children}
             </section>
-
             <MusicPlayer />
           </main>
         </StoreProvider>
+        
       </body>
     </html>
   );

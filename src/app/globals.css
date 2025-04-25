@@ -16,9 +16,10 @@
   }
 }
 
+
 body {
   color: white;
-  background:#171717;
+  background:#0f0f0f;
 }
 
 @layer utilities {
@@ -105,4 +106,19 @@ body {
     transform: translateY(0px);
       transform: translateX(0px);
   }
+}
+
+
+.bg-gradinent-before::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(to bottom, rgba(202, 208, 255, 0.473), rgba(0, 0, 0, 0.2));
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
 }
