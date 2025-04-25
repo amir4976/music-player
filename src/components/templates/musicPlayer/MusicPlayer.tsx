@@ -146,8 +146,8 @@ function MusicPlayer({}: Props) {
             <Image
               src={currentMusic?.cover}
               alt="musiccover"
-              width={240}
-              height={240}
+              width={500}
+              height={500}
               className={`w-full h-full object-cover`}
             />
           </motion.div>
