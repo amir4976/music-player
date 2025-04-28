@@ -13,7 +13,7 @@ function MusicList({ mainThemeColor, musics }: Props) {
       <div
         className="absolute w-full h-[200px] left-0 top-0 z-[1] "
         style={{
-          background: `linear-gradient(to bottom, ${mainThemeColor} 0%, #171717 100%)`,
+          background: `linear-gradient(to bottom, ${mainThemeColor} 0%, rgba(0,0,0,0) 80%)`,
         }}
       ></div>
       <div className={`relative z-[2] p-10 `}>

@@ -3,11 +3,11 @@ import AlbumsModel from "@/models/Albums";
 
 export const GET = async (
   request: Request,
-  { params }: { params: { title: string } }
+  { params }: { params: { id: string } }
 ) => {
-  const { title } = params;
-  const findAlbum = await AlbumsModel.findOne({ title: title });
-
+  const { id } = params;
+  console.log(id)
+  const findAlbum = await AlbumsModel.findOne({ _id: id });
   if (!findAlbum) {
     return new Response(JSON.stringify({ message: "Album not found" }), {
       status: 404,
