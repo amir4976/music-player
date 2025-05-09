@@ -18,10 +18,11 @@ function MusicList({ saccondColor, musics ,title}: Props) {
     musics ? setAllMusics(musics) : setAllMusics([])
   },[musics])
   const dispatch = useDispatch()
-  const play =({title , artist , audio , cover})=>{
+
+  const play =({title , artist , audio , cover}:{title:string,artist:string,audio:string,cover:string})=>{
      dispatch(setCurrentMusic({title,artist,audio,cover}))
   }
-  console.log(allMusics)
+
   return (
     <div className="relative w-full h-fit bg-[#121212] ">
       <div
