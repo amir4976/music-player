@@ -21,7 +21,7 @@ function Page () {
 
   return (
     <>
-    <div className="p-5 bg-[#171717]">
+    <div className="p-5 bg-[#121212]">
       <div className="text-white text-5xl font-bold mt-10">
         Alboms  
       </div>

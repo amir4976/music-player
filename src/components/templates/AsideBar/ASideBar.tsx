@@ -1,6 +1,15 @@
 "use client";
-import { ElementPlus, Heart, Home, House, House2, Map, Map1 } from "iconsax-reactjs";
+import {
+  ElementPlus,
+  Heart,
+  Home,
+  House,
+  House2,
+  Map,
+  Map1,
+} from "iconsax-reactjs";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useState } from "react";
 
 type Props = {};
@@ -18,10 +27,10 @@ function ASideBar({}: Props) {
       </button>
 
       <aside
-        className={`w-72 h-[82vh]  hidden  md:w-72  lg:flex    bg-[#171717] `}
+        className={`w-72 h-[82vh]  hidden  md:w-72  lg:flex    bg-[#121212] `}
       >
         <div className=" w-72   left-0 top-0">
-          <div className=" h-full   bg-[#171717] text-white">
+          <div className=" h-full   bg-[#121212] text-white">
             <div className="flex gap-2 w-full justify-center  items-center text-white my-5 mt-14">
               <div className="logo w-10 h-10">
                 <Image
@@ -38,12 +47,24 @@ function ASideBar({}: Props) {
             <div className="w-full mt-20  ">
               <ul className="flex flex-col gap-2 [&>li]:text-white [&>li]:text-lg [&>li]:font-semibold [&>li]:py-2 [&>li]:px-6   [&>li]:cursor-pointer [&>li]:flex [&>li]:gap-3  ">
                 <li className="hover:bg-black/50">
-                  <Home variant="Bold" />
-                  Home
+                  <Link href={"/"} className="flex gap-2 w-full h-full">
+                    <Home variant="Bold" />
+                    Home
+                  </Link>
                 </li>
                 <li className="hover:bg-black/50">
-                  <Map1 variant="Bold"/>
-                  Browse</li>
+                  <Link href={"/Browse"} className="flex gap-2 w-full h-full">
+                    <Map1 variant="Bold" />
+                    Browse
+                  </Link>
+                </li>
+
+                <li className="hover:bg-black/50">
+                  <Link href={"/Albums"} className="flex gap-2 w-full h-full">
+                    <Map1 variant="Bold" />
+                    Albums
+                  </Link>
+                </li>
               </ul>
               <div className="px-6">
                 <div className="border-b text-white text-xs font-semibold py-2 my-5">
@@ -67,12 +88,12 @@ function ASideBar({}: Props) {
 
       {/* mobile menu */}
       <aside
-        className={`w-72   bg-[#171717]  absolute left-0 top-0 h-screen z-5 ${
+        className={`w-72   bg-[#121212]  absolute left-0 top-0 h-screen z-5 ${
           isShow ? "flex" : "hidden"
         }`}
       >
         <div className=" w-72  left-0 top-0">
-          <div className="  h-screen bg-[#171717] text-white">
+          <div className="  h-screen bg-[#121212] text-white">
             <div className="flex gap-2 w-full justify-center  items-center text-white my-5 mt-10">
               <div className="logo w-14 h-14">
                 <Image

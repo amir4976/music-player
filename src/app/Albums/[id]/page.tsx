@@ -19,7 +19,7 @@ function Page() {
         const response = await fetch(`/api/Albums/${id}`);
         if (!response.ok) {
           console.log("Album not found");
-          return router.push("/not-found");
+          // return router.push("/not-found");
         }
         const data = await response.json();
         setAlbum(data.findAlbum);

@@ -1,4 +1,4 @@
-import { audio } from "framer-motion/client";
+
 import mongoose from "mongoose";
 
 export const MusicSchema = new mongoose.Schema({
@@ -26,10 +26,7 @@ export const MusicSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
-  
-  
-  
-  createdAt: {
+    createdAt: {
     type: Date,
     default: Date.now,
   }

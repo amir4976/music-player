@@ -19,14 +19,14 @@ function Navbar({}: Props) {
     <div className="w-full h-fit flex justify-between items-center py-5   text-white px-20 ">
       <div className="flex gap-5">
         <div className="btns flex gap-3">
-          <button className="bg-[#171717] text-white p-2 rounded-full">
+          <button className="bg-[#121212] text-white p-2 rounded-full">
             <ArrowLeft3 />
           </button>
-          <button className="bg-[#171717] text-white p-2 rounded-full">
+          <button className="bg-[#121212] text-white p-2 rounded-full">
             <ArrowRight3 />
           </button>
         </div>
-        <div className=" w-[20rem] bg-[#171717] rounded-full relative hidden items-center lg:flex ">
+        <div className=" w-[20rem] bg-[#121212] rounded-full relative hidden items-center lg:flex ">
           <div className="absolute left-2  ">
             <SearchNormal1 size={20} />
           </div>
@@ -40,19 +40,19 @@ function Navbar({}: Props) {
 
       <div className="">
         <div className="flex justify-between items-center gap-5">
-          <div className="p-2 bg-[#171717] rounded-full">
+          <div className="p-2 bg-[#121212] rounded-full">
             <div className="">
               <Notification />
             </div>
           </div>
           
-          <div className="p-2 bg-[#171717] rounded-full">
+          <div className="p-2 bg-[#121212] rounded-full">
             <div className="">
               <Setting2/>
             </div>
           </div>
 
-          <div className="p-2 bg-[#171717] rounded-full" onClick={()=>setIsOpen(true)}>
+          <div className="p-2 bg-[#121212] rounded-full" onClick={()=>setIsOpen(true)}>
               <button>login</button>
           </div>
         </div>

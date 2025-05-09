@@ -1,5 +1,5 @@
 import ConnectToDb from "@/utils/ConnectToDb";
-import music from '@/models/musics'
+import music from '@/models/Music'
 
 export const GET = async ()=>{
      ConnectToDb()
