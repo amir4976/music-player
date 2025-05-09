@@ -1,8 +1,8 @@
-'use client'
+"use client";
 import { setCurrentMusic } from "@/feature/MusicSlice";
 import Image from "next/image";
-import React from "react";
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 type Props = {
   title: string;
   artist: string;
@@ -10,19 +10,27 @@ type Props = {
   audio: string;
 };
 
-function MusicCard({ title, artist,audio, cover }: Props) {
-    const dispatch = useDispatch()
-    const music = useSelector((state:any)=>state.music)
+function MusicCard({ title, artist, audio, cover }: Props) {
+  const dispatch = useDispatch();
+  const music = useSelector((state: any) => state.music);
 
 
-    const handleClick =()=>{
-        dispatch(setCurrentMusic({title,artist,audio,cover}))
-    }
+
+
+
+  const handleClick = () => {
+    dispatch(setCurrentMusic({ title, artist, audio, cover }));
+  };
+
+
 
 
   return (
     <>
-      <div className="w-full  h-fit flex flex-col items-center gap-2 hover:bg-[#121212] rounded-xl p-3 transition-all" onClick={handleClick}>
+      <div
+        className="w-full  h-fit flex flex-col items-center gap-2 hover:bg-[#121212] rounded-xl p-3 transition-all"
+        onClick={handleClick}
+      >
         <div className="w-full h-full">
           <Image
             src={cover}

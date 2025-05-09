@@ -3,9 +3,6 @@ import {
   ElementPlus,
   Heart,
   Home,
-  House,
-  House2,
-  Map,
   Map1,
 } from "iconsax-reactjs";
 import Image from "next/image";
@@ -63,6 +60,12 @@ function ASideBar({}: Props) {
                   <Link href={"/Albums"} className="flex gap-2 w-full h-full">
                     <Map1 variant="Bold" />
                     Albums
+                  </Link>
+                </li>
+                <li className="hover:bg-black/50">
+                  <Link href={"/Contollers"} className="flex gap-2 w-full h-full">
+                    <Map1 variant="Bold" />
+                    controlls
                   </Link>
                 </li>
               </ul>

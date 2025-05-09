@@ -22,7 +22,6 @@ export default function Home() {
         <div className="w-full h-fit flex flex-col gap-5 mb-10">
           <LastUpload allMusics={Musics} />
           <MostPlayed allMusics={Musics} />
-
         </div>
       </div>
     </div>
